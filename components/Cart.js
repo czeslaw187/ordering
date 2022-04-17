@@ -1,11 +1,28 @@
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {useState} from 'react'
 
 function Cart({props}) {
+    const [dropdown,setDropdown] = useState(false)
+    console.log(props.myState?.myState, 'cart')
     return ( 
-        <div>
-            <button className="mx-4"><FontAwesomeIcon icon={faCartShopping}/></button>
-            <div className="w-3/12 rounded-full bg-orange-400 relative z-[9999] -top-4 left-7 text-center text-xs m-0">{props.myState?.myState.length}</div>
+        <div onMouseEnter={()=>{setDropdown(true)}}>
+            <button className="mr-12"><FontAwesomeIcon icon={faCartShopping}/></button>
+            <div className="w-3/12 rounded-full bg-orange-400 relative -top-4 left-3 text-center text-xs m-0">{props.myState?.myState.length}</div>
+            <div className='relative'>
+                <div className={dropdown ? "visible w-64 bg-white absolute -left-52 p-3 opacity-50" : "invisible h-0 absolute"} onMouseLeave={()=>{setDropdown(false)}}>
+                    {
+                        props.myState?.myState.map((el,id)=>{
+                            return (
+                                <div className='flex flex-row justify-between'>
+                                    <p key={id} className="w-full h-auto my-2 ml-2">{el.name}</p>
+                                    <button>x</button>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
         </div>
      );
 }

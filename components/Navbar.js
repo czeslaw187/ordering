@@ -3,7 +3,7 @@ import Cart from './Cart.js';
 
 function Navbar(props) {
     return ( 
-        <div className="w-full h-full py-5 flex flex-row justify-between bg-gradient-to-bl from-lime-100 to-green-300">
+        <div className="w-full h-[34] fixed mb-5 py-5 flex flex-row justify-between bg-gradient-to-bl from-lime-100 to-green-300">
             <a className="mx-4" href="#">Order</a>
             <Cart props={props} />
         </div>
