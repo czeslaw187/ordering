@@ -16,4 +16,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Navbar);
+function mapDispatchToProps(dispatch) {
+    return {
+        removeFood: (id)=>{dispatch({type:"REMOVE_ITEM", payload:id})}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

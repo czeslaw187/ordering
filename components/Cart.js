@@ -4,7 +4,7 @@ import {useState} from 'react'
 
 function Cart({props}) {
     const [dropdown,setDropdown] = useState(false)
-    console.log(props.myState?.myState, 'cart')
+    console.log(props, 'cart')
     return ( 
         <div onMouseEnter={()=>{setDropdown(true)}}>
             <button className="mr-12"><FontAwesomeIcon icon={faCartShopping}/></button>
@@ -16,7 +16,7 @@ function Cart({props}) {
                             return (
                                 <div className='flex flex-row justify-between'>
                                     <p key={id} className="w-full h-auto my-2 ml-2">{el.name}</p>
-                                    <button>x</button>
+                                    <button onClick={()=>{props.removeFood(el.id)}}>x</button>
                                 </div>
                             )
                         })
