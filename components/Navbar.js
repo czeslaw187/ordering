@@ -15,7 +15,7 @@ function Navbar(props) {
                        total > 0 ? `£${total}` : null
                     }
                 </p>
-                {total > 0 ? <button onClick={()=>{props.sendTotal(returnTotalFromArray(total)); router.push('/checkout')}} className='w-[52] h-auto bg-indigo-600 rounded-lg px-10 mx-3'>Pay</button> : null}
+                {total > 0 ? <button onClick={()=>{props.sendTotal(returnTotalFromArray(total) + 5); router.push('/checkout')}} className='w-[52] h-auto bg-indigo-400 hover:bg-indigo-600 rounded-lg px-10 mx-3'>Pay</button> : null}
             </div>
         </div>
      );
