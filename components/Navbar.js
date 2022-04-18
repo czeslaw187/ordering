@@ -1,7 +1,9 @@
 import {connect} from 'react-redux'
 import Cart from './Cart.js';
+import {useRouter} from 'next/router'
 
 function Navbar(props) {
+    const router = useRouter()
     let total = props.myState?.myState.length > 0 ? props.myState?.myState.reduce((partialSum, a) => partialSum + a.data[0].price, 0) : [0]
     return ( 
         <div className="w-full h-[34] fixed mb-5 py-5 flex flex-row justify-between bg-gradient-to-bl from-lime-100 to-green-300">
@@ -13,14 +15,21 @@ function Navbar(props) {
                        total > 0 ? `£${total}` : null
                     }
                 </p>
-                {total > 0 ? <button onClick={()=>{props.sendTotal(total); handlePay()}} className='w-[52] h-auto bg-indigo-600 rounded-lg px-10 mx-3'>Pay</button> : null}
+                {total > 0 ? <button onClick={()=>{props.sendTotal(returnTotalFromArray(total)); router.push('/checkout')}} className='w-[52] h-auto bg-indigo-600 rounded-lg px-10 mx-3'>Pay</button> : null}
             </div>
         </div>
      );
 }
 
-function handlePay() {
-    console.log('cool')
+function returnTotalFromArray(total) {
+    if (total.length > 0) {
+        let newTotal;
+        console.log(total[-1], 'total')
+        return newTotal
+    } else {
+        return total
+    }
+    
 }
 
 function mapStateToProps(state) {
