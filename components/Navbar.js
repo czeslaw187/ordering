@@ -13,10 +13,14 @@ function Navbar(props) {
                        total > 0 ? `£${total}` : null
                     }
                 </p>
-                {total > 0 ? <button className='w-[52] h-auto bg-indigo-600 rounded-lg px-10 mx-3'>Pay</button> : null}
+                {total > 0 ? <button onClick={()=>{props.sendTotal(total); handlePay()}} className='w-[52] h-auto bg-indigo-600 rounded-lg px-10 mx-3'>Pay</button> : null}
             </div>
         </div>
      );
+}
+
+function handlePay() {
+    console.log('cool')
 }
 
 function mapStateToProps(state) {
@@ -27,7 +31,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        removeFood: (id)=>{dispatch({type:"REMOVE_ITEM", payload:id})}
+        removeFood: (id)=>{dispatch({type:"REMOVE_ITEM", payload:id})},
+        sendTotal: (price)=>{dispatch({type:"ADD_TOTAL",payload:price})}
     }
 }
 

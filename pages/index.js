@@ -4,7 +4,7 @@ import FoodItem from '../components/FoodItem.js';
 import * as actionCreator from '../lib/actions.js'
 
 function Home(props) {
-  console.log(props.state?.myState)
+  console.log(props.state, 'state')
   let state = props.state
   return ( 
     <div className="w-screen h-full overflow-y-auto text-xl bg-gradient-to-br from-slate-200 to-lime-300 rounded-md">
