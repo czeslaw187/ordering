@@ -4,7 +4,6 @@ import {useState} from 'react'
 
 function Cart({props}) {
     const [dropdown,setDropdown] = useState(false)
-    console.log(props, 'cart')
     return ( 
         <div onMouseEnter={()=>{setDropdown(true)}}>
             <button className="mr-12"><FontAwesomeIcon icon={faCartShopping}/></button>
