@@ -1,11 +1,12 @@
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
 import {useState} from 'react'
+import Link from 'next/link'
 
 function Checkout(props) {
     const router = useRouter()
     const [finalOrder, setFinalOrder] = useState({})
-    const handleChange = (e, value=null) => {
+    const handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
         setFinalOrder(values=>({...values,[name]:value}))
@@ -13,7 +14,7 @@ function Checkout(props) {
     return ( 
         <div className='pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-screen w-full'>
             <div className='w-11/12 flex flex-row justify-start'>                
-                <button className='mb-14 ml-7 underline' onClick={()=>{router.push('/')}}>{"<< Back"}</button>   
+                <Link href='/'><a className='mb-14 ml-7 underline'>{"<< Back"}</a></Link>   
             </div> 
             <form className='w-6/12 h-4/6 mx-auto px-auto py-5 border-2 border-teal-400 rounded-md flex flex-col'>
                 <label className='w-10/12 mx-auto' htmlFor='name'>Your name</label>
