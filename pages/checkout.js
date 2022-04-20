@@ -1,16 +1,34 @@
 import {connect} from 'react-redux'
-import {useRouter} from 'next/router'
 import {useState} from 'react'
 import Link from 'next/link'
+import axios from 'axios'
+import { loadStripe } from '@stripe/stripe-js';
 
 function Checkout(props) {
-    const router = useRouter()
     const [finalOrder, setFinalOrder] = useState({})
     const handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
         setFinalOrder(values=>({...values,[name]:value}))
     }
+    
+    const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+    const stripePromise = loadStripe(publishableKey);
+
+    const createCheckOutSession = async () => {
+        const stripe = await stripePromise;
+        const checkoutSession = await axios.post(process.env.NEXT_PUBLIC_URL + '/api/create-stripe-session', {
+          item: finalOrder,
+          totalPrice: props.state.total
+        });
+        const result = await stripe.redirectToCheckout({
+          sessionId: checkoutSession.data.id,
+        });
+        if (result.error) {
+          alert(result.error.message);
+        }
+      };
+
     return ( 
         <div className='pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-screen w-full'>
             <div className='w-11/12 flex flex-row justify-start'>                
@@ -35,6 +53,7 @@ function Checkout(props) {
                 <button role="submit" onClick={(e)=>{
                     props.sendTotal(props.state?.total)
                     console.log(finalOrder, 'final')
+                    createCheckOutSession()
                 }} className='w-2/12 bg-indigo-400 hover:bg-indigo-600 rounded-md text-center mx-auto py-2'>Checkout</button>
             </div>
         </div>
