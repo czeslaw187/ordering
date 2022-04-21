@@ -2,13 +2,14 @@ import Image from "next/image";
 import {useRef} from 'react'
 
 function FoodItem({el, props, menu}) {
+    console.log(props.state.myState, 'fooditem')
     const ref = useRef(null)
     return ( 
         <div    onClick={()=>{
                     let foodItem = menu.starters.filter(el=>{return el.name == ref.current.childNodes[1].innerHTML})
                     props.addFood(foodItem)
                 }}
-                className='w-7/12 h-auto p-2 mx-auto hover:scale-[1.2] transition-transform 
+                className='w-11/12 md:w-7/12 h-auto p-2 mx-auto hover:scale-[1.05] transition-transform 
                                     delay-50 ease-out hover:border-gray-900 my-5 border-gray-300 
                                     border-2 rounded-sm flex flex-row'>
             <div className='my-1 mr-1'>

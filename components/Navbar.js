@@ -23,7 +23,6 @@ function Navbar(props) {
 function returnTotalFromArray(total) {
     if (total.length > 0) {
         let newTotal;
-        console.log(total[-1], 'total')
         return newTotal
     } else {
         return total
