@@ -13,8 +13,8 @@ function Cart({props}) {
                     {
                         props.myState?.myState.map((el,id)=>{
                             return (
-                                <div className='flex flex-row justify-between'>
-                                    <p key={id} className="w-full h-auto my-2 ml-2">{el.data[0].name}</p>
+                                <div key={id} className='flex flex-row justify-between'>
+                                    <p className="w-full h-auto my-2 ml-2">{el.data[0].name}</p>
                                     <button onClick={()=>{props.removeFood(el.data[0].id)}}>x</button>
                                     <hr className='text-gray-800'/>
                                 </div>
