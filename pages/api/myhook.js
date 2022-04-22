@@ -29,7 +29,8 @@ const handler = async (req, res) => {
 
         if ( 'checkout.session.completed' === stripeEvent.type ) {
             const session = stripeEvent.data.object;
-            console.log( 'payment success', session )     }
+            console.log( 'payment success', session )     
+        }
 
         res.json({ received: true });
     } else {
