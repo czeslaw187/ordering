@@ -20,7 +20,7 @@ function Checkout(props) {
         const checkoutSession = await axios.post(process.env.NEXT_PUBLIC_URL + '/api/create-stripe-session', {
           item: finalOrder,
           totalPrice: props.state.total
-        });
+        }).then(data=> alert(data));
         const result = await stripe.redirectToCheckout({
           sessionId: checkoutSession.data.id,
         });
