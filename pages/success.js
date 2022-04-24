@@ -8,7 +8,8 @@ function Success(props) {
     const router = useRouter()
     
     useEffect(()=>{
-        setTimeout(()=>{
+        props.clearData()
+        setTimeout(()=>{            
             router.push('/')
         }, 5000)
     },[])
@@ -26,4 +27,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Success);
+function mapDispatchToProps(dispatch) {
+    return {
+        clearData: ()=>{dispatch({type:"CLEAR_STORE"})}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Success);
