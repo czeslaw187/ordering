@@ -1,7 +1,10 @@
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
+import {connect} from 'react-redux'
 
-function Success() {
+function Success(props) {
+    console.log(props, 'success')
+
     const router = useRouter()
     
     useEffect(()=>{
@@ -17,4 +20,10 @@ function Success() {
      );
 }
 
-export default Success;
+function mapStateToProps(state) {
+    return {
+        state
+    }
+}
+
+export default connect(mapStateToProps)(Success);
