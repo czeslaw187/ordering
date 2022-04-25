@@ -2,7 +2,6 @@ import Image from "next/image";
 import {useRef} from 'react'
 
 function FoodItem({el, props, menu}) {
-    console.log(props.state.myState, 'fooditem')
     const ref = useRef(null)
     return ( 
         <div    onClick={()=>{

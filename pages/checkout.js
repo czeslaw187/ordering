@@ -44,14 +44,15 @@ function Checkout(props) {
                 <label className='w-10/12 mx-auto' htmlFor='address2'>Your address line 2</label>
                 <input className='w-10/12 mx-auto h-10 rounded-md' type="address" name='address2' id='address2' onChange={(e)=>{handleChange(e)}} value={finalOrder.address2} required />
                 <label className='w-10/12 mx-auto' htmlFor='postCode'>Post Code</label>
-                <input className='w-5/12 ml-8 md:ml-11 h-10 rounded-md' type="text" name='postCode' id='postCode' onChange={(e)=>{handleChange(e)}} value={finalOrder.postCode} required/>
+                <input className='w-5/12 ml-8 lg:ml-16 h-10 rounded-md' type="text" name='postCode' id='postCode' onChange={(e)=>{handleChange(e)}} value={finalOrder.postCode} required/>
                 <label className='w-10/12 mx-auto' htmlFor='city'>City</label>
-                <input className='w-5/12 ml-8 md:ml-11 h-10 rounded-md' type="text" name='city' id='city' onChange={(e)=>{handleChange(e)}} value={finalOrder.city} required />
+                <input className='w-5/12 ml-8 lg:ml-16 h-10 rounded-md' type="text" name='city' id='city' onChange={(e)=>{handleChange(e)}} value={finalOrder.city} required />
             </form>   
             <p className='text-xl ml-14 mt-8'>Total price with delivery £{props.state?.total}</p>         
             <div className='w-full flex justify-center'>
                 <button role="submit" onClick={(e)=>{
                     props.sendTotal(props.state?.total)
+                    props.sendDetails(finalOrder)
                     console.log(finalOrder, 'final')
                     createCheckOutSession()
                 }} className='max-w-3/12 bg-indigo-400 hover:bg-indigo-600 rounded-md text-center mx-auto py-2 px-2'>Checkout</button>
@@ -68,7 +69,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        sendTotal: (total)=>{dispatch({type:"ADD_TOTAL",payload:total})}
+        sendTotal: (total)=>{dispatch({type:"ADD_TOTAL",payload:total})},
+        sendDetails: (details)=>{dispatch({type:"CUSTOMER",payload:details})}
     }
 }
 

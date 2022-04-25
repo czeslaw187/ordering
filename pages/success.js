@@ -1,22 +1,30 @@
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import {connect} from 'react-redux'
+import axios from 'axios'
 
 function Success(props) {
     console.log(props, 'success')
-
     const router = useRouter()
-    
-    useEffect(()=>{
-        props.clearData()
-        setTimeout(()=>{            
+
+    async function emailOrder(order, details, id, total) {
+        await axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:id, total:total})
+    }    
+
+    const orderId = Date.now()
+    useEffect(()=>{    
+        emailOrder(props.state.myState[0].data[0], props.state.details, orderId, props.state.total).
+        then(resp=>{props.clearData()})    
+        setTimeout(()=>{   
             router.push('/')
         }, 5000)
     },[])
 
     return ( 
         <div className="pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-full w-full m-auto">
-                <p className="w-full text-center text-6xl">Payment successful</p>
+                <p className="w-full text-center text-6xl">Payment of £{props.state.total} successful</p>
+                <p className="w-full text-center text-xl mt-14">Order No {orderId} is being prepared</p>
+                <p className="w-full text-center text-xl mt-14">We have sent your order confirmation on  {props.state.details.email}</p>
         </div>
      );
 }
