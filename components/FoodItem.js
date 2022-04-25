@@ -24,8 +24,4 @@ function FoodItem({el, props, menu}) {
     );
 }
 
-function getRandom() {
-    return Math.floor(Math.random() * 10000)
-}
-
 export default FoodItem;
