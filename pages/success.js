@@ -13,9 +13,9 @@ function Success(props) {
 
     const orderId = Date.now()
     useEffect(()=>{    
-        emailOrder(props.state.myState[0].data[0], props.state.details, orderId, props.state.total).
-        then(resp=>{props.clearData()})    
+        emailOrder(props.state.myState[0].data[0], props.state.details, orderId, props.state.total)
         setTimeout(()=>{   
+            props.clearData()
             router.push('/')
         }, 5000)
     },[])
