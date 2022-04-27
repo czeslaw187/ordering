@@ -12,8 +12,13 @@ function Success(props) {
     }    
 
     const orderId = Date.now()
+    let myOrder = []
+          props.state.myState.map(el=>{
+            myOrder.push(el.data[0].name)
+          })
+
     useEffect(()=>{    
-        emailOrder(props.state.myState[0].data[0], props.state.details, orderId, props.state.total)
+        emailOrder(myOrder, props.state.details, orderId, props.state.total)
         setTimeout(()=>{   
             props.clearData()
             router.push('/')
