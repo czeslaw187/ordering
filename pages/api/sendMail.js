@@ -30,7 +30,7 @@ export default async function sendMail(req, res) {
               console.log(info, 'info')
           })
           // insert customer details into db
-          let result = await sql_query('INSERT INTO users (name, email, addres1, addres2, city, postCode, client_order_id) VALUES (?,?,?,?,?,?,?)', [
+          let result = await sql_query('INSERT INTO users (name, email, address1, address2, city, postCode, client_order_id) VALUES (?,?,?,?,?,?,?)', [
             details.name,
             details.email,
             details.address1,
