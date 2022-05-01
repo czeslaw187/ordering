@@ -17,13 +17,13 @@ function Location({props}) {
                 <div className='w-full flex flex-row flex-end'>
                     <button className='ml-auto text-right mr-4' onClick={()=>{setVisual(false)}}>x</button>
                 </div>
-                <p className='w-full mt-4 text-center'>We are  Km away from you</p>
-                <p className='w-full mt-4 text-center'>We can deliver your food in  min</p>
+                <p className='w-full mt-4 text-center'>We are {tD ? Math.round(tD.length/100)/10 : null} Km away from you</p>
+                <p className='w-full mt-4 text-center'>We can deliver your food in {tD ? Math.round(tD.duration/60) : null} min</p>
             </div>
         </div>
      );
 }
 
 export default Location;
-// {Math.round(tD.length/100)/10}
-// {Math.round(tD.duration/60)}
+
+
