@@ -16,7 +16,7 @@ function Location({props}) {
                 <div className='w-full flex flex-row flex-end'>
                     <button className='ml-auto text-right mr-4' onClick={()=>{setVisual(false)}}>x</button>
                 </div>
-                <p className='w-full mt-4 text-center'>We are {Math.round(tD.length/100)/10} Km away from you</p>
+                <p className='w-full mt-4 text-center'>We are  Km away from you</p>
                 <p className='w-full mt-4 text-center'>We can deliver your food in {Math.round(tD.duration/60)} min</p>
             </div>
         </div>
