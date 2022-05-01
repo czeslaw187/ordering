@@ -7,6 +7,7 @@ import Location from '../components/Location';
 import {useEffect, useState} from 'react'
 
 function Home(props) {
+  console.log(props, 'index')
   const [clientCoords,setClientCoords] = useState(null)
   useEffect(()=>{
     navigator.geolocation.getCurrentPosition(position=>{
