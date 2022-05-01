@@ -44,9 +44,9 @@ function Checkout(props) {
                 <label className='w-10/12 mx-auto' htmlFor='address2'>Your address line 2</label>
                 <input className='w-10/12 mx-auto h-10 rounded-md' type="address" name='address2' id='address2' onChange={(e)=>{handleChange(e)}} value={finalOrder.address2} required />
                 <label className='w-10/12 mx-auto' htmlFor='postCode'>Post Code</label>
-                <input className='w-5/12 ml-8 lg:ml-16 h-10 rounded-md' type="text" name='postCode' id='postCode' onChange={(e)=>{handleChange(e)}} value={finalOrder.postCode} required/>
+                <input className='w-5/12 ml-8 s:ml-12 lg:ml-11 xl:ml-16 h-10 rounded-md' type="text" name='postCode' id='postCode' onChange={(e)=>{handleChange(e)}} value={finalOrder.postCode} required/>
                 <label className='w-10/12 mx-auto' htmlFor='city'>City</label>
-                <input className='w-5/12 ml-8 lg:ml-16 h-10 rounded-md' type="text" name='city' id='city' onChange={(e)=>{handleChange(e)}} value={finalOrder.city} required />
+                <input className='w-5/12  ml-8 s:ml-12 lg:ml-11 xl:ml-16 h-10 rounded-md' type="text" name='city' id='city' onChange={(e)=>{handleChange(e)}} value={finalOrder.city} required />
             </form>   
             <p className='text-xl ml-14 mt-8'>Total price with delivery £{props.state?.total}</p>         
             <div className='w-full flex justify-center'>
