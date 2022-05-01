@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 
-function Location() {
+function Location({props}) {
+    const tD = props.state?.timeDist?.data
     const [visual,setVisual] = useState(false)
     useEffect(()=>{
         setVisual(true)
@@ -8,14 +9,16 @@ function Location() {
 
     return ( 
         <div className={
-            visual ? "w-5/12 h-2/6 opacity-100 rounded-xl absolute z-[10002] bg-gradient-to-br from outline-lime-100 to bg-emerald-300 ml-14 transition-opacity duration-1000 ":
+            visual ? "w-10/12 lg:w-5/12 h-2/6 opacity-100 rounded-xl absolute z-[10002] ml-8 lg:ml-14 transition-opacity duration-1000 bg-gray-900 border-slate-50 border-2 text-white":
             "w-0 h-0 opacity-0"
-        }>
-            <div className='w-full flex flex-row flex-end'>
-                <button className='ml-auto text-right mr-4 mt-2' onClick={()=>{setVisual(false)}}>x</button>
+        }>            
+            <div className='pb-4 mx-4 mb-4 border-2 border-slate-50 rounded-lg'>
+                <div className='w-full flex flex-row flex-end'>
+                    <button className='ml-auto text-right mr-4' onClick={()=>{setVisual(false)}}>x</button>
+                </div>
+                <p className='w-full mt-4 text-center'>We are {Math.round(tD.length/100)/10} Km away from you</p>
+                <p className='w-full mt-4 text-center'>We can deliver your food in {Math.round(tD.duration/60)} min</p>
             </div>
-            <p className='w-full my-8 text-center'>We are ? Km away from you</p>
-            <p className='w-full mt-10 text-center'>We can deliver your food in ? min</p>
         </div>
      );
 }

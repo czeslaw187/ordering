@@ -1,21 +1,12 @@
-var openrouteservice = require("openrouteservice-js");
+import axios from 'axios'
 
 export default async function getTimeDistance(req, res) {
-    // Add your api_key here
-var Matrix = new openrouteservice.Matrix({ api_key: "5b3ce3597851110001cf6248732d5c106af1474ca1c49813768fe90d"});
-
-Matrix.calculate({
-  locations: [[8.690958, 49.404662], [8.687868, 49.390139], [8.687868, 49.390133]],
-  profile: "driving-car",
-  sources: ['all'],
-  destinations: ['all']
-})
-.then(function(response) {
-  // Add your own result handling here
-  console.log("response", response);
-})
-.catch(function(err) {
-  var str = "An error occurred: " + err;
-  console.log(str);
-});
+    const {coords} = req.body
+    let location = process.env.NEXT_PUBLIC_MYLOCATION
+    location = location.split(',')
+    let result = await axios.get(`https://router.hereapi.com/v8/routes?transportMode=car&origin=${location[0]},${location[1]}&destination=${coords[0]},${coords[1]}&return=summary&units=metric&apikey=${process.env.NEXT_PUBLIC_HERE_KEY}`)
+    let timeDistance = result.data.routes[0].sections[0].summary
+    console.log(timeDistance,'api')
+    
+    res.json(timeDistance)
 }
