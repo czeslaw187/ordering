@@ -6,7 +6,6 @@ export default async function sendMail(req, res) {
         // send confitmation email
         let nodemailer = require('nodemailer')
         const {details, id, order, total} = req.body
-        console.log(dateNow)
         console.log(order, 'api order')
         
         const transporter = nodemailer.createTransport({
