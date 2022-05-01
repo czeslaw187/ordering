@@ -2,6 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
+import Moment from 'react-moment'
 
 function Success(props) {
     console.log(props, 'success')

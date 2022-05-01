@@ -1,11 +1,12 @@
-import axios from 'axios'
 import { sql_query } from '../../lib/db'
+import Moment from 'react-moment'
 
 export default async function sendMail(req, res) {
     try {
         // send confitmation email
         let nodemailer = require('nodemailer')
         const {details, id, order, total} = req.body
+        console.log(dateNow)
         console.log(order, 'api order')
         
         const transporter = nodemailer.createTransport({
@@ -41,11 +42,13 @@ export default async function sendMail(req, res) {
           ])
           // insert customer order insto db
           
+          let todayNow = new Intl.DateTimeFormat('en-UK', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}).format(Date.now())
+
           let result2 = await sql_query('INSERT INTO orders (name, total, order_id, date) VALUES (?, ?, ?, ?)',[
             JSON.stringify(order),
             total,
             id,
-            id
+            todayNow
           ])
 
         res.status(200).json({result:result, result2:result2})
