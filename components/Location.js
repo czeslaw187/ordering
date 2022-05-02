@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 
 function Location({props}) {
     const tD = props.state?.timeDist?.data
+    console.log(tD, 'location')
     const [visual,setVisual] = useState(false)
     useEffect(()=>{
         setVisual(true)
@@ -16,13 +17,14 @@ function Location({props}) {
                 <div className='w-full flex flex-row flex-end'>
                     <button className='ml-auto text-right mr-4' onClick={()=>{setVisual(false)}}>x</button>
                 </div>
-                <p className='w-full mt-4 text-center text-2xl'>We are {tD ? Math.round(tD['length']/100)/10 : null} Km away from you</p>
-                <p className='w-full mt-4 text-center text-2xl'>We can deliver your food in {tD ? Math.round(tD['duration']/60) : null} min</p>
+                <p className='w-full mt-4 text-center text-2xl'>We are  Km away from you</p>
+                <p className='w-full mt-4 text-center text-2xl'>We can deliver your food in  min</p>
             </div>
         </div>
      );
 }
 
 export default Location;
-
+// {tD ? Math.round(tD['length']/100)/10 : null}
+// {tD ? Math.round(tD['duration']/60) : null}
 
