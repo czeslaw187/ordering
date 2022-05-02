@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Layout from '../components/Layout'
+// import Layout from '../components/Layout'
 import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from '../lib/reducer.js'
@@ -24,9 +24,9 @@ export default function MyApp({
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Layout>
+        {/* <Layout> */}
           <Component {...pageProps} />
-        </Layout>
+        {/* </Layout> */}
       </PersistGate>      
     </Provider>
   )
