@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react'
 
 function Location({props}) {
     const tD = props.state?.timeDist?.data
-    console.log(tD, 'location')
     const [visual,setVisual] = useState(false)
     useEffect(()=>{
         setVisual(true)
@@ -18,7 +17,7 @@ function Location({props}) {
                     <button className='ml-auto text-right mr-4' onClick={()=>{setVisual(false)}}>x</button>
                 </div>
                 <p className='w-full mt-4 text-center text-2xl'>We are {Math.round(props.state?.timeDist?.data?.length/100)/10} Km away from you</p>
-                <p className='w-full mt-4 text-center text-2xl'>We can deliver your food in {Math.round(props.state?.timeDist?.data?.length)/60} min</p>
+                <p className='w-full mt-4 text-center text-2xl'>We can deliver your food in {Math.round(props.state?.timeDist?.data?.duration/60)} min</p>
             </div>
         </div>
      );
