@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react'
 
 function Location({props}) {
     const tD = props.state?.timeDist?.data
-    console.log(tD['length'])
     const [visual,setVisual] = useState(false)
     useEffect(()=>{
         setVisual(true)
