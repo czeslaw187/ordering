@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 
 function Location({props}) {
-    const tD = props.state?.timeDist?.data
+    const tD = props.state?.timeDist
     console.log(tD, 'location')
     const [visual,setVisual] = useState(false)
     useEffect(()=>{
