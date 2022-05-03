@@ -22,8 +22,10 @@ function ControlPanel(props) {
                 <div className="flex flex-row flex-wrap justify-between mt-10">
                     <Link href='/admin/manageOrders'>
                         <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Manage Orders</a>
-                    </Link>              
-                    <button className="w-3/12 mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Manage Account</button>                
+                    </Link>      
+                    <Link href='/admin/manageAccount'>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Manage Orders</a>
+                    </Link>         
                     <button className="w-3/12 mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Open shop</button>                  
                 </div>
             </div>
