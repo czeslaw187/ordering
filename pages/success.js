@@ -1,8 +1,7 @@
 import {useRouter} from 'next/router'
 import {useEffect} from 'react'
 import {connect} from 'react-redux'
-import axios from 'axios'
-import Moment from 'react-moment'
+import axios from 'axios' 
 
 function Success(props) {
     console.log(props, 'success')
@@ -27,7 +26,7 @@ function Success(props) {
     },[])
 
     return ( 
-        <div className="pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-full w-full m-auto">
+        <div className="pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-screen w-full m-auto">
                 <p className="w-full text-center text-6xl">Payment of £{props.state.total} successful</p>
                 <p className="w-full text-center text-xl mt-14">Order No {orderId} is being prepared</p>
                 <p className="w-full text-center text-xl mt-14">We have sent your order confirmation on  {props.state.details.email}</p>

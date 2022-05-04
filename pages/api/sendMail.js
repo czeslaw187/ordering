@@ -1,5 +1,4 @@
 import { sql_query } from '../../lib/db'
-import Moment from 'react-moment'
 
 export default async function sendMail(req, res) {
     try {
