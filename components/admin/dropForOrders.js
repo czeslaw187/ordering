@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function Dropdown({element}) {
+function Dropdown({element, items}) {
     const [dropdown,setDropdown] = useState(false)
 
     return (
@@ -21,6 +21,15 @@ function Dropdown({element}) {
                         <p>{element.address2}</p>
                         <p>{element.postCode}</p>
                         <p>{element.city}</p>
+                    </div>
+                    <div>
+                        <ul>
+                            {
+                                items && items.map(el=>{
+                                    return <li>{el}</li>
+                                })
+                            }
+                        </ul>
                     </div>
                     <div>
                         <p>Total paid £{element.total}</p>

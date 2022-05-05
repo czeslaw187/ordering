@@ -2,10 +2,9 @@ import {sql_query} from '../../../lib/db.js'
 
 export default async function checkCredentials(req, res) {
     const {credentials} = req.body
-    const myName = process.env.NEXT_PUBLIC_MYNAME
     
     try {
-        let realCreds = await sql_query('SELECT login,password FROM myadmin WHERE name=?',[myName])
+        let realCreds = await sql_query('SELECT login,password FROM myadmin',[])
         if (credentials.login === '') {
             res.json({
                 message: 'Enter valid login',

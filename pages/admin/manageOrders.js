@@ -16,9 +16,7 @@ function ManageOrders(props) {
             return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getAllOrders')
         }
         handleOrders().then(data=>{setMyOrders(data)})
-        console.log(myOrders, 'order')
     },[setMyOrders])
-    console.log(myOrders, 'order')
     if (props.state.isLogged) {return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
                 <div className="w-full h-16 flex flex-row justify-between border-2 py-2">
@@ -30,10 +28,10 @@ function ManageOrders(props) {
                         {
                             myOrders?.data ? 
                             myOrders?.data.map((el,id)=>{
-                                let itemList = el.items ? el.items.replace(/'/g, '').slice(1,-1).split(',') : el.items
+                                let itemList = el.items ? el.items.replace(/"/g, '').slice(1,-1).split(',') : el.items
                                 console.log(itemList, 'items')
                                 return (
-                                    <Dropdown key={id} element={el}/>
+                                    <Dropdown key={id} element={el} items={itemList}/>
                                 )
                             })
                             : null
@@ -55,4 +53,3 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps)(ManageOrders);
 
-// myOrders.data[0]?.name.slice(1,-1).split(',').map(el=>{return <p>{el}</p>})
