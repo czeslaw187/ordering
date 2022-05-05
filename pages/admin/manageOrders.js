@@ -10,18 +10,17 @@ function ManageOrders(props) {
     
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
-
-    const handleOrders = async () => {
-        return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getAllOrders')
-    }
-    
+        
     useEffect(()=>{
+        const handleOrders = async () => {
+            return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getAllOrders')
+        }
         handleOrders().then(data=>{setMyOrders(data)})
         console.log(myOrders, 'order')
     },[setMyOrders])
     console.log(myOrders, 'order')
     if (props.state.isLogged) {return ( 
-            <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500">
+            <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
                 <div className="w-full h-16 flex flex-row justify-between border-2 py-2">
                     <p className='ml-4 text-3xl'>Manage Orders</p>
                     <Link href='/admin/controlPanel'><a className='underline mr-4'>{'<< Back'}</a></Link>
@@ -30,11 +29,11 @@ function ManageOrders(props) {
                     <div>
                         {
                             myOrders?.data ? 
-                            myOrders?.data.map(el=>{
+                            myOrders?.data.map((el,id)=>{
                                 let itemList = el.items.replace(/"/g, '').slice(1,-1).split(',')
                                 console.log(itemList, 'items')
                                 return (
-                                    <Dropdown element={el}/>
+                                    <Dropdown key={id} element={el}/>
                                 )
                             })
                             : null
