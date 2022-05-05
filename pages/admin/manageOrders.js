@@ -30,7 +30,7 @@ function ManageOrders(props) {
                         {
                             myOrders?.data ? 
                             myOrders?.data.map((el,id)=>{
-                                let itemList = el.items.replace(/'/g, '').slice(1,-1).split(',')
+                                let itemList = el.items ? el.items.replace(/'/g, '').slice(1,-1).split(',') : el.items
                                 console.log(itemList, 'items')
                                 return (
                                     <Dropdown key={id} element={el}/>
