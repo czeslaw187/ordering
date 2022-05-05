@@ -1,4 +1,4 @@
-export default async function(req, res) {
+export default async function assignId(req, res) {
     const {item} = req.body
     try {        
         item[0].id = Date.now()

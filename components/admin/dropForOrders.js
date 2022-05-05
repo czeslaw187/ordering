@@ -23,8 +23,7 @@ function Dropdown({element}) {
                         <p>{element.city}</p>
                     </div>
                     <div>
-                        <p>Total to pay £{element.total}</p>
-                        <label htmlFor='paid'>Paid</label>
+                        <p>Total paid £{element.total}</p>
                     </div>
                 </div>                
             </div> 

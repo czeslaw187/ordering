@@ -6,9 +6,9 @@ import axios from 'axios'
 import Dropdown from '../../components/admin/dropForOrders.js'
 
 function ManageOrders(props) {
-    const [myOrders,setMyOrders] = useState([])
-    
+    const [myOrders,setMyOrders] = useState([])    
     const router = useRouter()
+    
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
         
     useEffect(()=>{
