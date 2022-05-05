@@ -3,6 +3,7 @@ import {useRouter} from 'next/router'
 import {connect} from 'react-redux'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import Dropdown from '../../components/admin/dropForOrders.js'
 
 function ManageOrders(props) {
     const [myOrders,setMyOrders] = useState([])
@@ -26,13 +27,19 @@ function ManageOrders(props) {
                     <Link href='/admin/controlPanel'><a className='underline mr-4'>{'<< Back'}</a></Link>
                 </div>
                 <div className='w-full h-5/6 translate-y-10 flex flex-col text-center'>
-                    <p>
+                    <div>
                         {
-                            myOrders?.data[0] ? 
-                            myOrders.data[0].name
+                            myOrders?.data ? 
+                            myOrders?.data.map(el=>{
+                                let itemList = el.items.replace(/"/g, '').slice(1,-1).split(',')
+                                console.log(itemList, 'items')
+                                return (
+                                    <Dropdown element={el}/>
+                                )
+                            })
                             : null
                         }
-                    </p>
+                    </div>
                 </div>
             </div>
         );
@@ -48,3 +55,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(ManageOrders);
+
+// myOrders.data[0]?.name.slice(1,-1).split(',').map(el=>{return <p>{el}</p>})
