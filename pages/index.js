@@ -2,7 +2,6 @@ import menu from '../lib/menu.json'
 import {connect} from 'react-redux'
 import FoodItem from '../components/FoodItem.js';
 import * as actionCreator from '../lib/actions.js'
-import { faYammer } from '@fortawesome/free-brands-svg-icons';
 import Location from '../components/Location';
 import {useEffect, useState} from 'react'
 import Navbar from '../components/Navbar.js'

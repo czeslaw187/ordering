@@ -25,8 +25,8 @@ function Dropdown({element, items}) {
                     <div>
                         <ul>
                             {
-                                items && items.map(el=>{
-                                    return <li>{el}</li>
+                                items && items.map((el, id)=>{
+                                    return <li key={id} >{el}</li>
                                 })
                             }
                         </ul>

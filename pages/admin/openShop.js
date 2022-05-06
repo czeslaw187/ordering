@@ -1,10 +1,31 @@
 import Link from 'next/link'
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
+import {useEffect, useState} from 'react'
+import io from 'Socket.IO-client'
+let socket;
 
 function ManageAccount(props) {
+    const [input,setInput] = useState({})
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
+
+    useEffect(()=>{
+        const socketInitializer = async () => {
+            await fetch('/api/admin/socket');
+            socket = io()
+        
+            socket.on('connect', () => {
+              console.log('connected')
+            })
+        
+            socket.on('update-input', msg => {
+              setInput(msg)
+            })
+          }
+          socketInitializer()
+    },[])
+    console.log(input, 'openshop')
 
     if (props.state.isLogged) {
         return ( 

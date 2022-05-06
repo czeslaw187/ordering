@@ -6,7 +6,6 @@ import Link from 'next/link'
 
 function ControlPanel(props) {
     const router = useRouter()
-    const [option,setOption] = useState('')
     console.log(props.state.isLogged, 'cp')
 
     !props.state.isLogged ? router.push('/admin') : null
