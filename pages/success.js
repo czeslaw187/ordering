@@ -8,7 +8,6 @@ let socket = io()
 function Success(props) {
     console.log(props, 'success')
     const router = useRouter()
-    const [input,setInput] = useState({})
     const orderId = Date.now()
 
     let myOrder = []
@@ -23,13 +22,11 @@ function Success(props) {
             socket.on('connect', () => {
               console.log('connected')
             })
-        
-            socket.on('update-input', msg => {
-              setInput(msg)
-            })
           }
+          
         socketInitializer()
-        socket.emit('input-change', myOrder)
+        let orderObj = {order:myOrder, details:props.state.details, id:orderId, total:props.state.total}
+        socket.emit('input-change', orderObj)
         const emailOrder = async(order, details, id, total) => {
             await axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:id, total:total})
         }    
@@ -40,6 +37,8 @@ function Success(props) {
             router.push('/')
         }, 5000)
     },[])
+
+    
     
     return ( 
         <div className="pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-screen w-full m-auto">
