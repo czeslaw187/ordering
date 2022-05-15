@@ -2,11 +2,12 @@ import Link from 'next/link'
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
+import OrderElement from '../../components/admin/orderElement.js'
 import io from 'Socket.IO-client'
 const socket = io()
 
 function ManageAccount(props) {
-    const [input,setInput] = useState(props.state.orderPanel)
+    
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
 
@@ -19,14 +20,15 @@ function ManageAccount(props) {
             })
         
             socket.on('update-input', msg => {
-                setInput(input=>[...input,msg])
+                props.addToPanel(msg)
             })
           }
           socketInitializer()
-    },[props.addToPanel])
+          
+    },[])
 
     
-
+    
     console.log(props.state.orderPanel, 'openshop')
 
     if (props.state.isLogged) {
@@ -36,25 +38,7 @@ function ManageAccount(props) {
                     <p className='ml-4 text-3xl'>Open Shop</p>
                     <Link href='/admin/controlPanel'><a className='underline mr-4'>{'<< Back'}</a></Link>
                 </div>
-                <ul className='w-full h-5/6 flex flex-row flex-wrap border-2 border-teal-200 rounded-md mt-5 overflow-y-auto'>
-                    {
-                        input ? input.map((el,id)=>{
-                            return (
-                                <li key={id} className='w-3/12 h-40 my-1 border-2 border-gray-900 rounded-sm bg-teal-200'>
-                                    <p>{el.id}</p>
-                                    <hr/>
-                                    <ul>
-                                        {
-                                            el.order.map((it,id)=>{
-                                                return <li key={id} >{it}</li>
-                                            })
-                                        }
-                                    </ul>
-                                </li>
-                            )
-                        }) : null
-                    }
-                </ul>
+                <OrderElement props={props} />
             </div>
         );
     } else {
@@ -68,4 +52,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(ManageAccount);
+function mapDispatchToProps(dispatch) {
+    return {
+        addToPanel: (order)=>{dispatch({type:"ADD_TO_PANEL", payload:order})}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageAccount);
