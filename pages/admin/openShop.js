@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {connect} from 'react-redux'
+import {connect, useSelector} from 'react-redux'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import OrderElement from '../../components/admin/orderElement.js'
@@ -10,7 +10,6 @@ function ManageAccount(props) {
     const [input,setInput] = useState([])
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
-
     useEffect(()=>{
         const socketInitializer = async () => {
             await fetch('/api/admin/socket');
@@ -24,11 +23,10 @@ function ManageAccount(props) {
             })
           }
           socketInitializer()
-          
     },[])
 
     useEffect(()=>{
-        if (props.state.orderPanel) {
+        if (props.state.orderPanel.length > 0) {
             setInput(props.state.orderPanel) 
         }        
     },[props.state.orderPanel])
