@@ -26,7 +26,7 @@ function Success(props) {
           
         socketInitializer()
         let orderObj = {order:myOrder, details:props.state.details, id:orderId, total:props.state.total}
-        socket.emit('input-change', orderObj)
+        socket.emit('input-change', orderObj.id)
         const emailOrder = async(order, details, id, total) => {
             await axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:id, total:total})
         }    
