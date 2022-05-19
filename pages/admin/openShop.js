@@ -11,7 +11,7 @@ function ManageAccount(props) {
     const [input,setInput] = useState([])
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
-    
+
     useEffect(()=>{
         const getUnrealisedOrders = async () => {
             return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getAllOrders')
@@ -42,7 +42,7 @@ function ManageAccount(props) {
                     {input?.data ? <button onClick={()=>{setInput([])}} className='w-3/12 h-auto bg-teal-200 rounded-md'>Clear</button> : null}
                     <Link href='/admin/controlPanel'><a className='underline mr-4'>{'<< Back'}</a></Link>
                 </div>
-                <OrderElement input={input}/>
+                <OrderElement input={input} setInput={setInput}/>
             </div>
         );
     } else {
