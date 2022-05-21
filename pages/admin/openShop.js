@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
-import OrderElement from '../../components/admin/orderElement.js'
+import OrderElement from '../../components/admin/openShop/orderElement.js'
 import axios from 'axios'
 import io from 'Socket.IO-client'
 const socket = io()

@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import {connect} from 'react-redux'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-import Dropdown from '../../components/admin/dropForOrders.js'
+import Dropdown from '../../components/admin/manageOrders/dropForOrders.js'
 
 function ManageOrders(props) {
     const [myOrders,setMyOrders] = useState([])    
@@ -33,7 +33,7 @@ function ManageOrders(props) {
                                 return (
                                     <Dropdown key={id} element={el} items={itemList}/>
                                 )
-                            })
+                            }).reverse()
                             : null
                         }
                     </div>
