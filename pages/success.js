@@ -1,20 +1,26 @@
 import {useRouter} from 'next/router'
-import {useEffect, useState} from 'react'
+import {useEffect, useMemo} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios' 
 import io from 'Socket.IO-client'
 let socket = io()
 
-function Success(props) {
+function Success(props) {    
     console.log(props, 'success')
     const router = useRouter()
-    const orderId = Date.now()
+    const orderId = ''
 
     let myOrder = []
-          props.state.myState.map(el=>{
-            myOrder.push(el.data[0].name)
-          })
+    props.state.myState.map(el=>{
+    myOrder.push(el.data[0].name)
+    })
+    
+    const emailOrder = (order, details, total) => {
+        orderId = Date.now()
+        return axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:orderId, total:total})
+    }   
 
+    useMemo(()=>emailOrder(myOrder, props.state.details, props.state.total),[socket.emit])
     useEffect(()=>{    
         const socketInitializer = async () => {
             await fetch('/api/admin/socket');
@@ -23,19 +29,12 @@ function Success(props) {
               console.log('connected')
             })
             socket.emit('input-change', orderObj.id)
-          }
-          
+          }          
         
         let orderObj = {order:myOrder, details:props.state.details, id:orderId, total:props.state.total}
-        socketInitializer()
-        
-        const emailOrder = (order, details, id, total) => {
-            axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:id, total:total})
-        }    
+        socketInitializer()        
 
         setTimeout(()=>{  
-            
-            emailOrder(myOrder, props.state.details, orderId, props.state.total) 
             props.clearData()
             router.push('/')
         }, 5000)
