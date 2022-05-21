@@ -22,23 +22,24 @@ function Success(props) {
             socket.on('connect', () => {
               console.log('connected')
             })
+            socket.emit('input-change', orderObj.id)
           }
           
-        socketInitializer()
-        let orderObj = {order:myOrder, details:props.state.details, id:orderId, total:props.state.total}
-        socket.emit('input-change', orderObj.id)
-        const emailOrder = async(order, details, id, total) => {
-            await axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:id, total:total})
-        }    
-        emailOrder(myOrder, props.state.details, orderId, props.state.total)
         
-        setTimeout(()=>{   
+        let orderObj = {order:myOrder, details:props.state.details, id:orderId, total:props.state.total}
+        socketInitializer()
+        
+        const emailOrder = (order, details, id, total) => {
+            axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:id, total:total})
+        }    
+
+        setTimeout(()=>{  
+            
+            emailOrder(myOrder, props.state.details, orderId, props.state.total) 
             props.clearData()
             router.push('/')
         }, 5000)
     },[])
-
-    
     
     return ( 
         <div className="pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-screen w-full m-auto">
