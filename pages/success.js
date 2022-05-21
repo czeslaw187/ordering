@@ -20,7 +20,7 @@ function Success(props) {
         return axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:orderId, total:total})
     }   
 
-    useMemo(()=>emailOrder(myOrder, props.state.details, props.state.total),[socket.emit])
+    useMemo(()=>emailOrder(myOrder, props.state.details, props.state.total),[myOrder])
     useEffect(()=>{    
         const socketInitializer = async () => {
             await fetch('/api/admin/socket');
