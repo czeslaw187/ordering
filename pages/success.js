@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useMemo} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios' 
-const { io } = require("socket.io-client");
+import { io } from "socket.io-client"
 let socket = io()
 
 function Success(props) {    
