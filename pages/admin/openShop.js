@@ -4,7 +4,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import OrderElement from '../../components/admin/openShop/orderElement.js'
 import axios from 'axios'
-import {io} from 'Socket.IO-client'
+import io from 'socket.io/node_modules/socket.io-client'
 const socket = io()
 
 function ManageAccount(props) {
