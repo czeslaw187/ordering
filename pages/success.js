@@ -20,15 +20,11 @@ function Success(props) {
         return axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:orderId, total:total})
     }   
 
-<<<<<<< HEAD
-    useMemo(()=>emailOrder(myOrder, props.state.details, props.state.total),[myOrder])
-=======
     const sendOrder = useCallback(()=>{
         if (myOrder.length <= 0 || props.state.details.length <= 0 || !props.state.total) {return}
         emailOrder(myOrder, props.state.details, props.state.total)        
     },[])
     
->>>>>>> controlPanel
     useEffect(()=>{    
         const socketInitializer = async () => {
             await fetch('/api/admin/socket');
