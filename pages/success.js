@@ -6,7 +6,6 @@ import { io } from "socket.io-client"
 let socket = io()
 
 function Success(props) {    
-    console.log(props, 'success')
     const router = useRouter()
     const orderId = ''
 
