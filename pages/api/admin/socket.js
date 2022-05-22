@@ -1,4 +1,4 @@
-import { Server } from 'Socket.IO'
+const { Server } = require("socket.io")
 
 export default async function socketHandle(req, res) {
     if (res.socket.server.io) {
