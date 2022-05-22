@@ -5,7 +5,7 @@ import * as actionCreator from '../lib/actions.js'
 import Location from '../components/Location';
 import {useEffect, useState} from 'react'
 import Navbar from '../components/Navbar.js'
-
+console.log(process.env.NEXT_PUBLIC_URL, 'index')
 function Home(props) {
   console.log(props, 'index')
   const [clientCoords,setClientCoords] = useState(null)
