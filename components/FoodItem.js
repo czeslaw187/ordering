@@ -12,7 +12,7 @@ function FoodItem({el, props, menu}) {
                                     delay-50 ease-out hover:border-gray-900 my-5 border-gray-300 
                                     border-2 rounded-sm flex flex-row'>
             <div className='my-1 mr-1'>
-                <Image src={el.image} width={150} height={120}/>
+                <Image src={el.image} alt="" width={150} height={120}/>
             </div>
             <div ref={ref}>
                 <p className='invisible'>{el.id}</p>
