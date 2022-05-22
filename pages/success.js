@@ -23,7 +23,7 @@ function Success(props) {
     const sendOrder = useCallback(()=>{
         if (myOrder.length <= 0 || props.state.details.length <= 0 || !props.state.total) {return}
         emailOrder(myOrder, props.state.details, props.state.total)        
-    },[])
+    })
     
     useEffect(()=>{    
         const socketInitializer = async () => {
