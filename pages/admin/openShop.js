@@ -22,8 +22,6 @@ function ManageAccount(props) {
     }
     
     useEffect(()=>{
-        
-
         getUnrealisedOrders().then(data=>{setInput(data)})
 
         const socketInitializer = async () => {
