@@ -4,7 +4,7 @@ function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setIn
     return (
         <ul className='w-full h-5/6 flex flex-row flex-wrap border-2 border-teal-200 rounded-md mt-5 overflow-y-auto justify-start'>
             {
-                input?.data && input.data.length > 0 ? input.data.splice(0,1).map((el,id)=>{m
+                input?.data && input.data.length > 0 ? input.data.map((el,id)=>{m
                     if (!el.realised && !realised) {
                         return (
                             <li key={id} className='w-3/12 h-fit border-2 border-gray-900 rounded-sm bg-teal-200 scrollbar-thin overflow-y-auto'>
