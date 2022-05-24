@@ -36,11 +36,11 @@ function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setIn
                                 </div>
                                 <hr/>
                                 <ul>
-                                    {
-                                        el.items && JSON.parse(el.items).map((it,id)=>{
-                                            return <SingleOrderItem key={id} it={it} id={id} />
-                                        })
-                                    }
+                                    <li>{el.name}</li>
+                                    <li>{el.address1}</li>
+                                    <li>{el.address2}</li>
+                                    <li>{el.postCode}</li>
+                                    <li>{el.city}</li>
                                 </ul>
                                 <div className="flex flex-row justify-between w-full border-t-2 border-slate-400 px-1">
                                     <p>{el.date}</p>

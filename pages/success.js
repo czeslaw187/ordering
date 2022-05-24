@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import {useEffect, useCallback} from 'react'
+import {useEffect, useCallback, useState} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios' 
 import { io } from "socket.io-client"
@@ -7,7 +7,7 @@ let socket = io()
 
 function Success(props) {    
     const router = useRouter()
-    const orderId = ''
+    const [orderId, setOrderId] = useState(Date.now())
 
     let myOrder = []
     props.state.myState.map(el=>{
@@ -15,7 +15,6 @@ function Success(props) {
     })
     
     const emailOrder = (order, details, total) => {
-        orderId = Date.now()
         return axios.post(process.env.NEXT_PUBLIC_URL + '/api/sendMail', {order:order, details:details, id:orderId, total:total})
     }   
 
@@ -34,7 +33,7 @@ function Success(props) {
             socket.emit('input-change', orderId)
           }          
         
-        let orderObj = {order:myOrder, details:props.state.details, id:orderId, total:props.state.total}
+        
         socketInitializer()        
         sendOrder()
         setTimeout(()=>{  
