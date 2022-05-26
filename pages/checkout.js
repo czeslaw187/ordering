@@ -39,6 +39,8 @@ function Checkout(props) {
                 <input className='w-10/12 mx-auto h-10 rounded-md' type="text" name='name' id='name' onChange={(e)=>{handleChange(e)}} value={finalOrder.name} required />
                 <label className='w-10/12 mx-auto' htmlFor='email'>Your email</label>
                 <input className='w-10/12 mx-auto h-10 rounded-md' type="email" name='email' id='email' onChange={(e)=>{handleChange(e)}} value={finalOrder.email} required />
+                <label className='w-10/12 mx-auto' htmlFor='mobile'>Your mobile</label>
+                <input className='w-10/12 mx-auto h-10 rounded-md' type="tel" name='mobile' id='mobile' onChange={(e)=>{handleChange(e)}} value={finalOrder.mobile} required />
                 <label className='w-10/12 mx-auto' htmlFor='address1'>Your address line 1</label>
                 <input className='w-10/12 mx-auto h-10 rounded-md' type="address" name='address1' id='address1' onChange={(e)=>{handleChange(e)}} value={finalOrder.address1} required />
                 <label className='w-10/12 mx-auto' htmlFor='address2'>Your address line 2</label>
@@ -50,7 +52,7 @@ function Checkout(props) {
             </form>   
             <p className='text-xl ml-14 mt-8'>Total price with delivery £{props.state?.total}</p>         
             <div className='w-full flex justify-center'>
-                <button role="submit" onClick={(e)=>{
+                <button role="submit" onClick={()=>{
                     props.sendTotal(props.state?.total)
                     props.sendDetails(finalOrder)
                     console.log(finalOrder, 'final')

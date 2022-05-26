@@ -37,6 +37,8 @@ function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setIn
                                 <hr/>
                                 <ul>
                                     <li>{el.name}</li>
+                                    <li>{el.email}</li>
+                                    <li>{el.mobile}</li>
                                     <li>{el.address1}</li>
                                     <li>{el.address2}</li>
                                     <li>{el.postCode}</li>

@@ -1,12 +1,9 @@
-import {useState} from 'react'
 import {connect} from 'react-redux'
-import * as actionCreator from '../../lib/actions.js'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 
 function ControlPanel(props) {
     const router = useRouter()
-    console.log(props.state.isLogged, 'cp')
 
     !props.state.isLogged ? router.push('/admin') : null
 
@@ -18,7 +15,7 @@ function ControlPanel(props) {
                     <div className="text-3xl ml-4">ControlPanel</div>
                     <Link href='/admin'><a className="w-1/12 mr-4 flex flex-col text-center justify-center text-lg h-10 rounded-md bg-lime-300" onClick={()=>{props.isLogged(!props.state.isLogged)}}>Log out</a></Link>
                 </div>
-                <div className="flex flex-row flex-wrap justify-between mt-10">
+                <div className="flex flex-row flex-wrap justify-around mt-10">
                     <Link href='/admin/manageOrders'>
                         <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Manage Orders</a>
                     </Link>      
