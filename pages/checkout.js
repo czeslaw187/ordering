@@ -5,6 +5,7 @@ import axios from 'axios'
 import { loadStripe } from '@stripe/stripe-js';
 
 function Checkout(props) {
+    const [dropdown,setDropdown] = useState(false)
     const [finalOrder, setFinalOrder] = useState({})
     const handleChange = (e) => {
         const name = e.target.name
@@ -28,13 +29,13 @@ function Checkout(props) {
           alert(result.error.message);
         }
       };
-
+    console.log(finalOrder, 'checkout')  
     return ( 
         <div className='pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-full w-full'>
             <div className='w-11/12 flex flex-row justify-start'>                
                 <Link href='/'><a className='mb-14 ml-7 underline'>{"<< Back"}</a></Link>   
             </div> 
-            <form className='w-11/12 md:w-6/12 h-4/6 mx-auto px-auto py-5 border-2 border-teal-400 rounded-md flex flex-col'>
+            <form className='w-11/12 md:w-6/12 mx-auto px-auto py-5 border-2 border-teal-400 rounded-md flex flex-col'>
                 <label className='w-10/12 mx-auto' htmlFor='name'>Your name</label>
                 <input className='w-10/12 mx-auto h-10 rounded-md' type="text" name='name' id='name' onChange={(e)=>{handleChange(e)}} value={finalOrder.name} required />
                 <label className='w-10/12 mx-auto' htmlFor='email'>Your email</label>
@@ -49,13 +50,15 @@ function Checkout(props) {
                 <input className='w-5/12 ml-8 s:ml-12 lg:ml-11 xl:ml-16 h-10 rounded-md' type="text" name='postCode' id='postCode' onChange={(e)=>{handleChange(e)}} value={finalOrder.postCode} required/>
                 <label className='w-10/12 mx-auto' htmlFor='city'>City</label>
                 <input className='w-5/12  ml-8 s:ml-12 lg:ml-11 xl:ml-16 h-10 rounded-md' type="text" name='city' id='city' onChange={(e)=>{handleChange(e)}} value={finalOrder.city} required />
+                
+                <label htmlFor='myNote'><button onClick={()=> setDropdown(!dropdown)} className='w-2/12 text-center ml-8 s:ml-12 lg:ml-11 xl:ml-16 my-2 border-2 border-teal-300 rounded-md hover:border-4'>Add note</button></label>
+                <textarea name="myNote" id="myNote" onChange={(e)=>{handleChange(e)}} value={finalOrder.myNote } className={dropdown ? "w-[25rem] h-52 ml-8 s:ml-12 lg:ml-11 xl:ml-16 animate-openWindow mb-auto" : 'ml-8 s:ml-12 lg:ml-11 xl:ml-16 animate-closeWindow h-0'}></textarea>
             </form>   
             <p className='text-xl ml-14 mt-8'>Total price with delivery £{props.state?.total}</p>         
             <div className='w-full flex justify-center'>
                 <button role="submit" onClick={()=>{
                     props.sendTotal(props.state?.total)
                     props.sendDetails(finalOrder)
-                    console.log(finalOrder, 'final')
                     createCheckOutSession()
                 }} className='max-w-3/12 bg-indigo-400 hover:bg-indigo-600 rounded-md text-center mx-auto py-2 px-2'>Checkout</button>
             </div>
