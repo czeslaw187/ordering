@@ -1,6 +1,7 @@
 import {useState} from 'react'
 
 function Dropdown({element, items}) {
+    console.log(element, 'manageOrders')
     const [dropdown,setDropdown] = useState(false)
 
     return (
@@ -29,6 +30,7 @@ function Dropdown({element, items}) {
                                     return <li key={id} >{el}</li>
                                 })
                             }
+                            {element.note ? <p>Note:<p className="text-red-600">{element.note}</p></p> : null}
                         </ul>
                     </div>
                     <div>
