@@ -20,6 +20,7 @@ function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setIn
                                             return <SingleOrderItem key={id} it={it} id={id} />
                                         })
                                     }
+                                    {el.note ? <p>Note:<p className="text-red-600">{el.note}</p></p> : null}
                                 </ul>
                                 <div className="flex flex-row justify-between w-full border-t-2 border-slate-400 px-1">
                                     <p>{el.date}</p>

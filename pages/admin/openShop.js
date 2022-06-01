@@ -37,7 +37,7 @@ function ManageAccount(props) {
           }
           socketInitializer()
     },[])    
-    
+    console.log(props, 'openShop')
     if (props.state.isLogged) {
         return ( 
             <div className="w-full h-screen bg-gradient-to-tr from-sky-400 to-lime-500 px-4 mt-2">
