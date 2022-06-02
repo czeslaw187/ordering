@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Dropdown from '../../components/admin/manageOrders/dropForOrders.js'
+import AdminNav from '../../components/admin/adminNav.js'
 
 function ManageOrders(props) {
     const [myOrders,setMyOrders] = useState([])    
@@ -19,10 +20,7 @@ function ManageOrders(props) {
     },[setMyOrders])
     if (props.state.isLogged) {return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
-                <div className="w-full h-16 flex flex-row justify-between border-2 py-2">
-                    <p className='ml-4 text-3xl'>Manage Orders</p>
-                    <Link href='/admin/controlPanel'><a className='underline mr-4'>{'<< Back'}</a></Link>
-                </div>
+                <AdminNav urlAdress={'/admin/controlPanel'} title={'Manage Orders'} />
                 <div className='w-full h-5/6 translate-y-10 flex flex-col text-center'>
                     <div>
                         {

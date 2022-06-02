@@ -4,6 +4,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import OrderElement from '../../components/admin/openShop/orderElement.js'
 import axios from 'axios'
+import AdminNav from '../../components/admin/adminNav.js'
 import { io } from "socket.io-client"
 const socket = io()
 
@@ -40,12 +41,11 @@ function ManageAccount(props) {
     console.log(props, 'openShop')
     if (props.state.isLogged) {
         return ( 
-            <div className="w-full h-screen bg-gradient-to-tr from-sky-400 to-lime-500 px-4 mt-2">
-                <div className="w-full h-16 flex flex-row justify-between border-2 py-2">
-                    <p className='ml-4 text-3xl'>Open Shop</p>
-                    <button onClick={()=>{setRealised('unrealised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'unrealised' ? 'w-2/12 h-auto bg-teal-200 rounded-md' : 'w-2/12 h-auto border-2 border-teal-200 rounded-md'}>Unrealised</button>
-                    <button onClick={()=>{setRealised('realised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'realised' ? 'w-2/12 h-auto bg-teal-200 rounded-md' : 'w-2/12 h-auto border-2 border-teal-200 rounded-md'}>Realised</button>
-                    <Link href='/admin/controlPanel'><a className='underline mr-4'>{'<< Back'}</a></Link>
+            <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 px-4 mt-2">
+                <AdminNav urlAdress={'/admin/controlPanel'} title={'Open Shop'} />
+                <div className='w-full flex flex-row justify-around mt-4'>
+                    <button onClick={()=>{setRealised('unrealised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'unrealised' ? 'w-2/12 h-10 bg-teal-200 rounded-md' : 'w-2/12 h-10 border-2 border-teal-200 rounded-md'}>Unrealised</button>
+                    <button onClick={()=>{setRealised('realised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'realised' ? 'w-2/12 h-10 bg-teal-200 rounded-md' : 'w-2/12 h-10 border-2 border-teal-200 rounded-md'}>Realised</button>
                 </div>
                 <OrderElement input={input} setInput={setInput} realised={realised} realiseOrder={realiseOrder} getUnrealisedOrders={getUnrealisedOrders}/>
             </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
 import {useState} from 'react'
+import AdminNav from "../../../components/admin/adminNav";
 
 function ChangePassword(props) {
     const [errorClass,setErrorClass] = useState(null)
@@ -23,10 +24,7 @@ function ChangePassword(props) {
     if (props.state.isLogged) {
         return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
-                <div className="w-full h-16 flex flex-row justify-between border-2 py-2">
-                    <p className='ml-4 text-3xl'>Change Password</p>
-                    <Link href='/admin/manageAccount'><a className='underline mr-4'>{'<< Back'}</a></Link>
-                </div>
+                <AdminNav urlAdress={'/admin/manageAccount'} title={'Change Password'}/>
                 <form className="flex flex-col w-3/12 mx-auto space-y-2 mt-10">
                     <label htmlFor="passw">New Password</label>
                     <input type="text" name="passw" id="passw" onChange={(e)=>{handleChange(e)}} value={passw.passw ?? ''} className='rounded-md h-8' />
