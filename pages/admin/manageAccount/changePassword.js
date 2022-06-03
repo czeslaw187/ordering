@@ -19,6 +19,7 @@ function ChangePassword(props) {
     const handleSubmit = async(e) => {
         e.preventDefault()
         await axios.post(process.env.NEXT_PUBLIC_URL + '/api/admin/chngPwd', {
+            username: passw.username,
             pass: passw.passw,
             conf: passw.conf
         })
@@ -31,6 +32,8 @@ function ChangePassword(props) {
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
                 <AdminNav urlAdress={'/admin/manageAccount'} title={'Change Password'}/>
                 <form className="flex flex-col w-3/12 mx-auto space-y-2 mt-10">
+                    <label htmlFor='username'>New Username</label>
+                    <input type="text" name="username" id="username" onChange={(e)=>{handleChange(e)}} value={passw.username ?? ''} className='rounded-md h-8' />
                     <label htmlFor="passw">New Password</label>
                     <input type="text" name="passw" id="passw" onChange={(e)=>{handleChange(e)}} value={passw.passw ?? ''} className='rounded-md h-8' />
                     <label htmlFor="conf">Confirm Password</label>
