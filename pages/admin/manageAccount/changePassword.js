@@ -1,11 +1,11 @@
-import Link from "next/link";
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
 import {useState} from 'react'
 import AdminNav from "../../../components/admin/adminNav";
+import axios from 'axios'
 
 function ChangePassword(props) {
-    const [errorClass,setErrorClass] = useState(null)
+    const [error, setError] = useState('')
     const [passw,setPassw] = useState([])
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
@@ -16,11 +16,16 @@ function ChangePassword(props) {
         setPassw(values=>({...values,[name]:value}))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
+        await axios.post(process.env.NEXT_PUBLIC_URL + '/api/admin/chngPwd', {
+            pass: passw.passw,
+            conf: passw.conf
+        })
+        .then(message=>setError(message))
     }
 
-    console.log(passw, 'password')
+    console.log(error, 'password')
     if (props.state.isLogged) {
         return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
@@ -32,7 +37,7 @@ function ChangePassword(props) {
                     <input type="text" name="conf" id="conf" onChange={(e)=>{handleChange(e)}} value={passw.conf ?? ''} className="rounded-md h-8" />
                     <button onClick={e=>handleSubmit(e)} className="w-4/12 border-2 border-teal-400 rounded-md mx-auto mt-4 hover:bg-teal-400">Submit</button>
                 </form>
-                
+                <p className='w-full text-center text-red-500'>{error && error.data.message}</p>
             </div>
          );
     } else {
