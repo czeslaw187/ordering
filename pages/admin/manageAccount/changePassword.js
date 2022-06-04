@@ -1,14 +1,19 @@
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import AdminNav from "../../../components/admin/adminNav";
 import axios from 'axios'
 
 function ChangePassword(props) {
     const [error, setError] = useState('')
     const [passw,setPassw] = useState([])
+    const [reveal,setReveal] = useState(false)
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
+
+    const getUsername = async() => {
+        return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getUsername')
+    }
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -38,9 +43,16 @@ function ChangePassword(props) {
                     <input type="text" name="passw" id="passw" onChange={(e)=>{handleChange(e)}} value={passw.passw ?? ''} className='rounded-md h-8' />
                     <label htmlFor="conf">Confirm Password</label>
                     <input type="text" name="conf" id="conf" onChange={(e)=>{handleChange(e)}} value={passw.conf ?? ''} className="rounded-md h-8" />
-                    <button onClick={e=>handleSubmit(e)} className="w-4/12 border-2 border-teal-400 rounded-md mx-auto mt-4 hover:bg-teal-400">Submit</button>
+                    <button onClick={e=>handleSubmit(e)} className="w-4/12 bg-teal-400 rounded-md mx-auto mt-4 hover:bg-teal-500 active:shadow-inner">Submit</button>
                 </form>
                 <p className='w-full text-center text-red-500'>{error && error.data.message}</p>
+                <div className='w-full text-center'>
+                    <button className='w-2/12 h-8 rounded-md bg-teal-400 shadow-lg mt-10 hover:bg-teal-500 active:shadow-inner'>Reveal Credentials</button>
+                </div>
+                <div className='w-4/12 h-fit border-2 rounded-md mx-auto flex flex-col text-center text-xl mt-10'>
+                    <p>Username</p>
+                    <p>Password</p>
+                </div>
             </div>
          );
     } else {
