@@ -8,13 +8,19 @@ function ChangePassword(props) {
     const [error, setError] = useState('')
     const [passw,setPassw] = useState([])
     const [reveal,setReveal] = useState(false)
+    const [revealedPass,setRevealedPass] = useState({})
     const router = useRouter()
     !props.state.isLogged ? router.push('/admin/controlPanel') : null
 
-    const getUsername = async() => {
-        return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getUsername')
-    }
-
+    useEffect(()=>{
+       if (reveal) {
+            const getMyCredentials = async() => {
+                    await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getUsername').then(data=>setRevealedPass(data))
+            }
+            getMyCredentials()
+       }
+    },[reveal])
+    
     const handleChange = (e) => {
         const name = e.target.name
         const value = e.target.value
@@ -29,9 +35,13 @@ function ChangePassword(props) {
             conf: passw.conf
         })
         .then(message=>setError(message))
+        setPassw({
+            username: '',
+            passw: ''
+        })
     }
 
-    console.log(error, 'password')
+    console.log(revealedPass, 'password')
     if (props.state.isLogged) {
         return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
@@ -47,11 +57,13 @@ function ChangePassword(props) {
                 </form>
                 <p className='w-full text-center text-red-500'>{error && error.data.message}</p>
                 <div className='w-full text-center'>
-                    <button className='w-2/12 h-8 rounded-md bg-teal-400 shadow-lg mt-10 hover:bg-teal-500 active:shadow-inner'>Reveal Credentials</button>
+                    <button onClick={()=>{setReveal(!reveal)}} className='w-2/12 h-8 rounded-md bg-teal-400 shadow-lg mt-10 hover:bg-teal-500 active:shadow-inner'>Reveal Credentials</button>
                 </div>
-                <div className='w-4/12 h-fit border-2 rounded-md mx-auto flex flex-col text-center text-xl mt-10'>
-                    <p>Username</p>
-                    <p>Password</p>
+                <div className={reveal ? 'w-4/12 h-[15rem] border-2 rounded-md mx-auto flex flex-col text-center justify-around text-xl mt-10 animate-openWindow' : 'invisible animate-closeWindow'}>
+                    <p>Username:</p>
+                    <p className='underline'>{revealedPass.data ? revealedPass.data[0].login: null}</p>
+                    <p>Password:</p>
+                    <p className='underline'>{revealedPass.data ? revealedPass.data[0].password: null}</p>
                 </div>
             </div>
          );
