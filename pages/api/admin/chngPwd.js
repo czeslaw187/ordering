@@ -4,7 +4,7 @@ export default async function changePwd(req, res) {
     const{username, pass, conf} = req.body
     try {
         if (username) {
-            await sql_query('UPDATE myadmin SET login=? WHERE name="Grzegorz Michniewicz"', [username])
+            await sql_query('UPDATE myadmin SET login=? WHERE name=?', [username, process.env.NEXT_PUBLIC_MYNAME])
             res.json({message: 'username changed'})
         }
 
@@ -13,7 +13,7 @@ export default async function changePwd(req, res) {
         } else if (!pass || !conf) {
             res.json({message: 'enter credentials'})
         } else {
-            await sql_query('UPDATE myadmin SET password=? WHERE name="Grzegorz Michniewicz"',[pass])
+            await sql_query('UPDATE myadmin SET password=? WHERE name=?',[pass, process.env.NEXT_PUBLIC_MYNAME])
             res.json({message: 'password changed'})
         }
     } catch (error) {
