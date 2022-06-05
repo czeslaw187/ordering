@@ -11,7 +11,7 @@ function Dropdown({element, items}) {
                 <p>{element.order_id}</p>
                 <div className='flex flex-row justify-between w-5/12'>
                     <p className='mx-2'>{element.date}</p>    
-                    <button onClick={()=>{setDropdown(!dropdown)}} className='bg-lime-400 rounded-lg px-2 hover:scale-[1.1]'>{dropdown ? 'Close' : 'Open'}</button>
+                    <button onClick={()=>{setDropdown(!dropdown)}} className={dropdown ? 'bg-lime-400 rounded-lg px-2 shadow-xl hover:bg-lime-500 active:shadow-inner' : 'bg-lime-400 rounded-lg px-2 shadow-xl active:shadow-inner hover:bg-lime-500'}>{dropdown ? 'Close' : 'Open'}</button>
                 </div>                                                       
             </div>
             <div className={dropdown ? 'w-full max-h-64 transition-all duration-1000 visible' : 'max-h-0'}>

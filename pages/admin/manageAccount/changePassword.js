@@ -53,11 +53,11 @@ function ChangePassword(props) {
                     <input type="text" name="passw" id="passw" onChange={(e)=>{handleChange(e)}} value={passw.passw ?? ''} className='rounded-md h-8' />
                     <label htmlFor="conf">Confirm Password</label>
                     <input type="text" name="conf" id="conf" onChange={(e)=>{handleChange(e)}} value={passw.conf ?? ''} className="rounded-md h-8" />
-                    <button onClick={e=>handleSubmit(e)} className="w-4/12 bg-teal-400 rounded-md mx-auto mt-4 hover:bg-teal-500 active:shadow-inner">Submit</button>
+                    <button onClick={e=>handleSubmit(e)} className="w-4/12 bg-teal-400 rounded-md mx-auto mt-4 shadow-xl hover:bg-teal-500 active:shadow-inner">Submit</button>
                 </form>
                 <p className='w-full text-center text-red-500'>{error && error.data.message}</p>
                 <div className='w-full text-center'>
-                    <button onClick={()=>{setReveal(!reveal)}} className='w-2/12 h-8 rounded-md bg-teal-400 shadow-lg mt-10 hover:bg-teal-500 active:shadow-inner'>Reveal Credentials</button>
+                    <button onClick={()=>{setReveal(!reveal)}} className='w-2/12 h-8 rounded-md bg-teal-400 shadow-xl mt-10 hover:bg-teal-500 active:shadow-inner'>Reveal Credentials</button>
                 </div>
                 <div className={reveal ? 'w-4/12 h-[15rem] border-2 rounded-md mx-auto flex flex-col text-center justify-around text-xl mt-10 animate-openWindow' : 'invisible animate-closeWindow'}>
                     <p>Username:</p>

@@ -44,8 +44,8 @@ function ManageAccount(props) {
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 px-4 mt-2">
                 <AdminNav urlAdress={'/admin/controlPanel'} title={'Open Shop'} />
                 <div className='w-full flex flex-row justify-around mt-4'>
-                    <button onClick={()=>{setRealised('unrealised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'unrealised' ? 'w-2/12 h-10 bg-teal-200 rounded-md' : 'w-2/12 h-10 border-2 border-teal-200 rounded-md'}>Unrealised</button>
-                    <button onClick={()=>{setRealised('realised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'realised' ? 'w-2/12 h-10 bg-teal-200 rounded-md' : 'w-2/12 h-10 border-2 border-teal-200 rounded-md'}>Realised</button>
+                    <button onClick={()=>{setRealised('unrealised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'unrealised' ? 'w-2/12 h-10 bg-teal-400 rounded-md shadow-xl  active:shadow-inner' : 'w-2/12 h-10 bg-teal-300 rounded-md shadow-xl hover:bg-teal-400 active:shadow-inner'}>Unrealised</button>
+                    <button onClick={()=>{setRealised('realised'); getUnrealisedOrders().then(data=>{setInput(data)})}} className={realised == 'realised' ? 'w-2/12 h-10 bg-teal-400 rounded-md shadow-xl active:shadow-inner' : 'w-2/12 h-10 bg-teal-300 rounded-md shadow-xl hover:bg-teal-400 active:shadow-inner'}>Realised</button>
                 </div>
                 <OrderElement input={input} setInput={setInput} realised={realised} realiseOrder={realiseOrder} getUnrealisedOrders={getUnrealisedOrders}/>
             </div>

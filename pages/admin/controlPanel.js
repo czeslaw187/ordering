@@ -13,17 +13,17 @@ function ControlPanel(props) {
             <div className="w-full h-screen bg-gradient-to-tr from-sky-400 to-lime-500">
                 <div className="w-full h-16 flex flex-row justify-between border-2 py-2">
                     <div className="text-3xl ml-4">ControlPanel</div>
-                    <Link href='/admin'><a className="w-1/12 mr-4 flex flex-col text-center justify-center text-lg h-10 rounded-md bg-lime-300" onClick={()=>{props.isLogged(!props.state.isLogged)}}>Log out</a></Link>
+                    <Link href='/admin'><a className="w-1/12 mr-4 flex flex-col text-center justify-center text-lg h-10 rounded-md shadow-xl bg-lime-300 hover:bg-lime-400 active:shadow-inner" onClick={()=>{props.isLogged(!props.state.isLogged)}}>Log out</a></Link>
                 </div>
                 <div className="flex flex-row flex-wrap justify-around mt-10">
                     <Link href='/admin/manageOrders'>
-                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Manage Orders</a>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] transition-all">Manage Orders</a>
                     </Link>      
                     <Link href='/admin/manageAccount'>
-                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Manage Account</a>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] transition-all">Manage Account</a>
                     </Link>     
                     <Link href='/admin/openShop'>
-                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Open Shop</a>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] transition-all">Open Shop</a>
                     </Link>    
                 </div>
             </div>
