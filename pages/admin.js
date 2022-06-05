@@ -30,7 +30,7 @@ function Admin(props) {
                     <input className="pl-2 h-10 rounded-md" type="text" name="login" id="name" onChange={(e)=>handleChange(e)} value={creden.login} required={true} />
                     <label className="font-serif text-lg mt-5" htmlFor="password">Password</label>
                     <input className="pl-2 h-10 rounded-md" type="password" name="password" id="password" onChange={(e)=>handleChange(e)} value={creden.password} required={true} />
-                    <input type="submit" onClick={(e)=>{handleSubmit(e)}} value={'Submit'} className="w-4/12 h-10 rounded-md text-center text-lg bg-lime-300 mx-auto mt-7" />
+                    <input type="submit" onClick={(e)=>{handleSubmit(e)}} value={'Log In'} className="w-4/12 h-10 rounded-md text-center text-lg bg-lime-400 shadow-button hover:bg-lime-500 active:shadow-click mx-auto mt-7" />
                 </form>
                 {
                     props.state.logginErr && <p className="w-full text-center text-lg text-red-600">{props.state.logginErr}</p>

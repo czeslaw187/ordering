@@ -13,7 +13,7 @@ function ControlPanel(props) {
             <div className="w-full h-screen bg-gradient-to-tr from-sky-400 to-lime-500">
                 <div className="w-full h-16 flex flex-row justify-between border-2 py-2">
                     <div className="text-3xl ml-4">ControlPanel</div>
-                    <Link href='/admin'><a className="w-1/12 mr-4 flex flex-col text-center justify-center text-lg h-10 rounded-md shadow-xl bg-lime-300 hover:bg-lime-400 active:shadow-inner" onClick={()=>{props.isLogged(!props.state.isLogged)}}>Log out</a></Link>
+                    <Link href='/admin'><a className="w-1/12 mr-4 flex flex-col text-center justify-center text-lg h-10 rounded-md shadow-xl bg-lime-300 hover:bg-lime-400 active:shadow-click" onClick={()=>{props.isLogged(!props.state.isLogged)}}>Log out</a></Link>
                 </div>
                 <div className="flex flex-row flex-wrap justify-around mt-10">
                     <Link href='/admin/manageOrders'>

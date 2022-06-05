@@ -52,7 +52,7 @@ function Checkout(props) {
                 <label className='w-10/12 mx-auto' htmlFor='city'>City</label>
                 <input className='w-5/12  ml-8 s:ml-12 lg:ml-11 xl:ml-16 h-10 rounded-md' type="text" name='city' id='city' onChange={(e)=>{handleChange(e)}} value={finalOrder.city ?? ''} required />
                 
-                <button onClick={(e)=>{e.preventDefault(); setDropdown(!dropdown)}} className='w-2/12 text-center ml-8 s:ml-12 lg:ml-11 xl:ml-16 my-2 border-2 border-teal-300 rounded-md hover:border-4'><label htmlFor='myNote'>Add note</label></button>
+                <button onClick={(e)=>{e.preventDefault(); setDropdown(!dropdown)}} className='w-2/12 text-center ml-8 s:ml-12 lg:ml-11 xl:ml-16 my-2 bg-teal-400 shadow-button rounded-md hover:bg-teal-500 active:shadow-click'><label htmlFor='myNote'>Add note</label></button>
                 <textarea name="myNote" id="myNote" onChange={(e)=>{handleChange(e)}} value={finalOrder.myNote ?? ''} className={dropdown ? "w-[25rem] h-52 ml-8 s:ml-12 lg:ml-11 xl:ml-16 animate-openWindow mb-auto" : 'ml-8 s:ml-12 lg:ml-11 xl:ml-16 animate-closeWindow h-0'}></textarea>
             </form>   
             <p className='text-xl ml-14 mt-8'>Total price with delivery £{props.state?.total}</p>         
@@ -61,7 +61,7 @@ function Checkout(props) {
                     props.sendTotal(props.state?.total)
                     props.sendDetails(finalOrder)
                     createCheckOutSession()
-                }} className='max-w-3/12 bg-indigo-400 hover:bg-indigo-600 rounded-md text-center mx-auto py-2 px-2'>Checkout</button>
+                }} className='max-w-3/12 bg-indigo-400 hover:bg-indigo-500 shadow-button active:shadow-click rounded-md text-center mx-auto py-2 px-2'>Checkout</button>
             </div>
         </div>
      );

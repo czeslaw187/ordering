@@ -19,6 +19,10 @@ module.exports = {
       animation: {
         openWindow: 'openWindow 0.3s ease-out',
         closeWindow: 'closeWindow 0.3s ease-out'
+      },
+      boxShadow: {
+        'click': 'inset -5px 5px 5px rgba(0,0,0,0.4)',
+        'button': '7px 12px 20px -7px rgba(0,0,0,0.3)'
       }
     },
   },
