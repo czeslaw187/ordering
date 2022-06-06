@@ -6,7 +6,14 @@ import { loadStripe } from '@stripe/stripe-js';
 
 function Checkout(props) {
     const [dropdown,setDropdown] = useState(false)
-    const [finalOrder, setFinalOrder] = useState(values=>{values:''})
+    const [finalOrder, setFinalOrder] = useState({
+        name: '',
+        email: '',
+        mobile: '',
+        address1: '',
+        postCode: '',
+        city: ''
+    })
     const [error,setError] = useState('')
     const handleChange = (e) => {
         e.preventDefault()
@@ -34,10 +41,10 @@ function Checkout(props) {
     
     const validateInput = (input) => {
         for (let i in input) {
-            if (i !== 'mobile' && i !== 'address2') {
-                if (!input[i]) {
+            if (i !== 'address2') {
+                if (input[i] === '' || !input[i]) {
                     return `enter valid ${i}`
-                }
+                } 
             }
         }
         return 'ok'
@@ -71,11 +78,12 @@ function Checkout(props) {
             <p className='text-xl ml-14 mt-8'>Total price with delivery £{props.state?.total}</p>         
             <div className='w-full flex justify-center'>
                 <button role="submit" onClick={()=>{
+                    setError('')
+                    props.sendTotal(props.state?.total)
+                    props.sendDetails(finalOrder)
                     let valid = validateInput(finalOrder)
+                    console.log(finalOrder, 'valid')
                     if (valid === 'ok') {
-                        setError('')
-                        props.sendTotal(props.state?.total)
-                        props.sendDetails(finalOrder)
                         createCheckOutSession()
                     } else {
                         setError(valid)
