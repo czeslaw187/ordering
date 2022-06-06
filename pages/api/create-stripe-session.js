@@ -3,6 +3,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 async function CreateStripeSession(req, res)  {
   const { item, totalPrice } = req.body;
   const redirectURL = process.env.NEXT_PUBLIC_URL
+  
   const transformedItem = {
     price_data: {
       currency: 'gbp',

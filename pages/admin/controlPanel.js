@@ -17,13 +17,13 @@ function ControlPanel(props) {
                 </div>
                 <div className="flex flex-row flex-wrap justify-around mt-10">
                     <Link href='/admin/manageOrders'>
-                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] transition-all">Manage Orders</a>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] active:scale-[0.95] transition-all">Manage Orders</a>
                     </Link>      
                     <Link href='/admin/manageAccount'>
-                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] transition-all">Manage Account</a>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] active:scale-[0.95] transition-all">Manage Account</a>
                     </Link>     
                     <Link href='/admin/openShop'>
-                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] transition-all">Open Shop</a>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 shadow-xl hover:scale-[1.1] active:scale-[0.95] transition-all">Open Shop</a>
                     </Link>    
                 </div>
             </div>

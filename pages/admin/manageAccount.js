@@ -13,7 +13,7 @@ function ManageAccount(props) {
                 <AdminNav urlAdress={'/admin/controlPanel'} title={'Manage Account'}/>
                 <div className='w-full flex flex-row flex-wrap justify-around'>
                     <Link href='/admin/manageAccount/changePassword'>
-                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all">Change password</a>
+                        <a className="w-3/12 flex flex-col justify-center text-center mx-4 mt-10 h-28 border-2 border-slate-500 hover:scale-[1.1] transition-all shadow-xl active:scale-[0.95]">Change password</a>
                     </Link>
                 </div>
             </div>
