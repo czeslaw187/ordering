@@ -6,7 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 function Checkout(props) {
     const [dropdown,setDropdown] = useState(false)
-    const [finalOrder, setFinalOrder] = useState({})
+    const [finalOrder, setFinalOrder] = useState(values=>{values:''})
     const [error,setError] = useState('')
     const handleChange = (e) => {
         e.preventDefault()
@@ -30,12 +30,12 @@ function Checkout(props) {
         if (result.error) {
           alert(result.error.message);
         }
-      };
+    };
     
     const validateInput = (input) => {
         for (let i in input) {
             if (i !== 'mobile' && i !== 'address2') {
-                if (input[i] == '') {
+                if (!input[i]) {
                     return `enter valid ${i}`
                 }
             }
