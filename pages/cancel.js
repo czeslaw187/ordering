@@ -1,6 +1,6 @@
 import {useRouter} from 'next/router'
 
-function cancel() {
+function Cancel() {
     const router = useRouter()
     router.push('/checkout')
 

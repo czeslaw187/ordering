@@ -5,6 +5,7 @@ import * as actionCreator from '../lib/actions.js'
 import Location from '../components/Location';
 import {useEffect, useState} from 'react'
 import Navbar from '../components/Navbar.js'
+
 function Home(props) {
   const [clientCoords,setClientCoords] = useState(null)
   useEffect(()=>{
