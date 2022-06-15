@@ -18,7 +18,7 @@ function Home(props) {
     if (clientCoords) {
       props.getTime(clientCoords)
     }
-  },[clientCoords])
+  },[clientCoords, props.getTime])
 
   let dateNow = new Intl.DateTimeFormat('en-UK', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}).format(Date.now())
   return ( 

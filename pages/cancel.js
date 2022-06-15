@@ -9,4 +9,4 @@ function Cancel() {
      );
 }
 
-export default cancel;
+export default Cancel;
