@@ -1,14 +1,13 @@
 import SingleOrderItem from "./singleOrderItem.js"
 
 function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setInput}) {
-    console.log(input, 'orderEl')
     return (
         <ul className='w-full h-5/6 flex flex-row flex-wrap border-2 border-teal-200 rounded-md mt-5 overflow-y-auto justify-start'>
             {
                 input?.data && input.data.length > 0 ? input.data.map((el,id)=>{
                     if (el.realised == 'unrealised' && realised == 'unrealised' ) {
                         return (
-                            <li key={id} className='w-3/12 h-fit border-2 border-gray-900 rounded-sm bg-teal-200 scrollbar-thin overflow-y-auto'>
+                            <li key={id} className='w-3/12 h-fit border-2 border-gray-900 rounded-sm bg-teal-200 scrollbar-thin overflow-y-auto shadow-xl'>
                                 <div className='flex flex-row justify-between'>
                                     <p>id {el.order_id}</p>
                                     <button id={el.order_id} onClick={()=>{realiseOrder(el.order_id, 'realised').then(data=>getUnrealisedOrders()).then(data=>{setInput(data)})}} className='mr-2 mb-1 text-2xl'>x</button>
@@ -30,7 +29,7 @@ function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setIn
                         )
                     } else if (el.realised == 'realised' && realised == 'realised') {
                         return (
-                            <li key={id} className='w-3/12 h-fit border-2 border-gray-900 rounded-sm bg-teal-200 scrollbar-thin overflow-y-auto'>
+                            <li key={id} className='w-3/12 h-fit border-2 border-gray-900 rounded-sm bg-teal-200 scrollbar-thin overflow-y-auto shadow-xl'>
                                 <div className='flex flex-row justify-between'>
                                     <p>id {el.order_id}</p>
                                     <button onClick={()=>{realiseOrder(el.order_id, 'archive').then(data=>getUnrealisedOrders()).then(data=>{setInput(data)})}}  className='mr-2 text-lg'>Archive</button>

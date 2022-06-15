@@ -1,17 +1,16 @@
 import {useState} from 'react'
 
 function Dropdown({element, items}) {
-    console.log(element, 'manageOrders')
     const [dropdown,setDropdown] = useState(false)
 
     return (
-        <div className='w-full text-center border-2 rounded-md border-green-200 my-2'>
+        <div className='w-full text-center border-2 rounded-md border-green-200 my-2 shadow-xl'>
             <div className='w-full px-4 flex flex-row justify-between my-2'>
                 <p>{element.name}</p>
                 <p>{element.order_id}</p>
                 <div className='flex flex-row justify-between w-5/12'>
                     <p className='mx-2'>{element.date}</p>    
-                    <button onClick={()=>{setDropdown(!dropdown)}} className={dropdown ? 'bg-lime-400 rounded-lg px-2 shadow-xl hover:bg-lime-500 active:shadow-inner' : 'bg-lime-400 rounded-lg px-2 shadow-xl active:shadow-inner hover:bg-lime-500'}>{dropdown ? 'Close' : 'Open'}</button>
+                    <button onClick={()=>{setDropdown(!dropdown)}} className={dropdown ? 'bg-lime-400 rounded-lg px-2 shadow-button hover:bg-lime-500 active:shadow-click' : 'bg-lime-400 rounded-lg px-2 shadow-button active:shadow-click hover:bg-lime-500'}>{dropdown ? 'Close' : 'Open'}</button>
                 </div>                                                       
             </div>
             <div className={dropdown ? 'w-full max-h-64 transition-all duration-1000 visible' : 'max-h-0'}>
@@ -30,7 +29,7 @@ function Dropdown({element, items}) {
                                     return <li key={id} >{el}</li>
                                 })
                             }
-                            {element.note ? <p>Note:<p className="text-red-600">{element.note}</p></p> : null}
+                            {element.note ? <p>Note:<span className="text-red-600 block">{element.note}</span></p> : null}
                         </ul>
                     </div>
                     <div>

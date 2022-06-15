@@ -51,12 +51,12 @@ function Checkout(props) {
     }
     
     return ( 
-        <div className='pt-32 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-full w-full'>
+        <div className='py-5 bg-gradient-to-br from-slate-200 to-lime-300 rounded-md h-full w-full'>
             <div className='w-11/12 flex flex-row justify-start'>                
                 <Link href='/'><a className='mb-14 ml-7 underline'>{"<< Back"}</a></Link>   
             </div> 
             <p className='w-full text-center text-red-500 text-xl'>{error}</p>
-            <form className='w-11/12 md:w-6/12 mx-auto px-auto py-5 border-2 border-teal-400 rounded-md flex flex-col'>
+            <form className='w-11/12 md:w-6/12 mx-auto px-auto py-5 border-2 border-teal-400 rounded-md flex flex-col shadow-xl'>
                 <label className='w-10/12 mx-auto' htmlFor='name'>Your name</label>
                 <input className='w-10/12 mx-auto h-10 rounded-md' type="text" name='name' id='name' onChange={(e)=>{handleChange(e)}} value={finalOrder.name ?? ''} required />
                 <label className='w-10/12 mx-auto' htmlFor='email'>Your email</label>
