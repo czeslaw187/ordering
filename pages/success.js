@@ -2,8 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useCallback, useState} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios' 
-import { io } from "socket.io-client"
-let socket = io()
+import Pusher from 'pusher-js'
 
 function Success(props) {    
     const router = useRouter()
@@ -25,12 +24,7 @@ function Success(props) {
     
     useEffect(()=>{    
         const socketInitializer = async () => {
-            await fetch('/api/admin/socket');
-        
-            socket.on('connect', () => {
-              console.log('connected')
-            })
-            socket.emit('input-change', orderId)
+            await axios.post('/api/admin/socket', {message: orderId})
           }          
         
         

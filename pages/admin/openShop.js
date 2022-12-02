@@ -5,8 +5,7 @@ import {useEffect, useState} from 'react'
 import OrderElement from '../../components/admin/openShop/orderElement.js'
 import axios from 'axios'
 import AdminNav from '../../components/admin/adminNav.js'
-import { io } from "socket.io-client"
-const socket = io()
+import Pusher from 'pusher-js'
 
 function ManageAccount(props) {
     const [realised,setRealised] = useState('unrealised')
@@ -26,16 +25,14 @@ function ManageAccount(props) {
         getUnrealisedOrders().then(data=>{setInput(data)})
 
         const socketInitializer = async () => {
-            await fetch('/api/admin/socket');
-        
-            socket.on('connect', () => {
-              console.log('connected')
+            const pusher = new Pusher((process.env.NEXT_PUBLIC_KEY), {
+                cluster: 'eu'
             })
-        
-            socket.on('update-input', msg => {
+            const channel = pusher.subscribe('chat')
+            channel.bind('chat-event', function(data) {
                 getUnrealisedOrders().then(data=>{setInput(data)})
-            })
-          }
+            }
+            )}
           socketInitializer()
     },[])    
     console.log(props, 'openShop')
