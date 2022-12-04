@@ -1,10 +1,12 @@
-import {sql_query} from '../../../lib/db.js'
+import {Client} from 'pg'
 
 export default async function checkCredentials(req, res) {
+    const client = new Client(process.env.NEXT_PUBLIC_COCKROACHDB_URL)
     const {credentials} = req.body
-    
+    await client.connect()
     try {
-        let realCreds = await sql_query('SELECT login,password FROM myadmin',[])
+        let realCreds = await client.query('SELECT login,password FROM myadmin')
+        console.log(realCreds.rows, 'real')
         if (credentials.login === '') {
             res.json({
                 message: 'Enter valid login',
@@ -15,7 +17,7 @@ export default async function checkCredentials(req, res) {
                 message: 'Enter valid password',
                 logged: false
             })
-        } else if (realCreds[0].login === credentials.login && realCreds[0].password === credentials.password) {
+        } else if (realCreds.rows[0].login === credentials.login && realCreds.rows[0].password === credentials.password) {
             res.json({
                 message: 'ok',
                 logged: true
@@ -28,5 +30,7 @@ export default async function checkCredentials(req, res) {
         }
     } catch(e) {
         res.json({message: e.message})
+    } finally {
+        client.end()
     }
 }   
