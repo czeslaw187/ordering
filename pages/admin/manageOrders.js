@@ -5,7 +5,6 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Dropdown from '../../components/admin/manageOrders/dropForOrders.js'
 import AdminNav from '../../components/admin/adminNav.js'
-import { data } from 'autoprefixer'
 
 function ManageOrders(props) {
     const [myOrders,setMyOrders] = useState([])  
@@ -21,7 +20,7 @@ function ManageOrders(props) {
 
     useEffect(()=>{
         const handleOrders = async() => {
-            return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getAllOrders').then(resp=>{setMyOrders(resp)})
+            return await axios.get(process.env.NEXT_PUBLIC_URL + '/api/admin/getAllOrders').then(resp=>{console.log(resp, 'orders'); setMyOrders(resp)})
         }
         handleOrders()
     },[])
