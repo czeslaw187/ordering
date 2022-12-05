@@ -30,12 +30,13 @@ function ManageAccount(props) {
             })
             const channel = pusher.subscribe('chat')
             channel.bind('chat-event', function(data) {
+                console.log(data, 'data')
                 getUnrealisedOrders().then(data=>{setInput(data)})
             }
             )}
-          socketInitializer()
+        socketInitializer()
     },[])    
-    console.log(props, 'openShop')
+
     if (props.state.isLogged) {
         return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 px-4 mt-2">
