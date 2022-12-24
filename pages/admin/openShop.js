@@ -8,6 +8,7 @@ import AdminNav from '../../components/admin/adminNav.js'
 import Pusher from 'pusher-js'
 
 function ManageAccount(props) {
+    
     const [realised,setRealised] = useState('unrealised')
     const [input,setInput] = useState([])
     const router = useRouter()
@@ -22,21 +23,20 @@ function ManageAccount(props) {
     }
     
     useEffect(()=>{
-        getUnrealisedOrders().then(data=>{setInput(data)})
+        getUnrealisedOrders().then(data=>{console.log(data.data, 'data'); setInput(data.data)})
 
         const socketInitializer = async () => {
-            const pusher = new Pusher((process.env.NEXT_PUBLIC_KEY), {
+            const pusher = new Pusher((process.env.NEXT_PUBLIC_PUSHER_KEY), {
                 cluster: 'eu'
             })
             const channel = pusher.subscribe('chat')
             channel.bind('chat-event', function(data) {
-                console.log(data, 'data')
                 getUnrealisedOrders().then(data=>{setInput(data)})
             }
             )}
         socketInitializer()
     },[])    
-
+    
     if (props.state.isLogged) {
         return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 px-4 mt-2">

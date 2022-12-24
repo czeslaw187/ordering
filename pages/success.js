@@ -2,7 +2,6 @@ import {useRouter} from 'next/router'
 import {useEffect, useCallback, useState} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios' 
-import Pusher from 'pusher-js'
 
 function Success(props) {    
     const router = useRouter()

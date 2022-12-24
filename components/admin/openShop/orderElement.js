@@ -1,10 +1,11 @@
 import SingleOrderItem from "./singleOrderItem.js"
 
 function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setInput}) {
+    console.log(input, 'input')
     return (
         <ul className='w-full h-5/6 flex flex-row flex-wrap border-2 border-teal-200 rounded-md mt-5 overflow-y-auto justify-start'>
             {
-                input?.data && input.data.length > 0 ? input.data.map((el,id)=>{
+                input?.data && input?.length > 0 ? input.map((el,id)=>{
                     if (el.realised == 'unrealised' && realised == 'unrealised' ) {
                         return (
                             <li key={id} className='w-3/12 h-fit border-2 border-gray-900 rounded-sm bg-teal-200 scrollbar-thin overflow-y-auto shadow-xl'>

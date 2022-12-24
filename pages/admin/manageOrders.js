@@ -30,7 +30,6 @@ function ManageOrders(props) {
             setCount(myOrders.data.length)
         }
     },[myOrders])
-    console.log(myOrders, 'orders')
 
     if (props.state.isLogged) {return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 overflow-y-auto">
