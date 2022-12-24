@@ -1,7 +1,6 @@
 import SingleOrderItem from "./singleOrderItem.js"
 
 function OrderElement({input, realised, realiseOrder, getUnrealisedOrders, setInput}) {
-    console.log(input, 'input')
     return (
         <ul className='w-full h-5/6 flex flex-row flex-wrap border-2 border-teal-200 rounded-md mt-5 overflow-y-auto justify-start'>
             {

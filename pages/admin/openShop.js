@@ -22,8 +22,7 @@ function ManageAccount(props) {
     }
     
     useEffect(()=>{
-        getUnrealisedOrders().then(data=>{console.log(data.data, 'data'); setInput(data.data)})
-
+        getUnrealisedOrders().then(data=>{setInput(data.data)})
         const socketInitializer = async () => {
             const pusher = new Pusher((process.env.NEXT_PUBLIC_PUSHER_KEY), {
                 cluster: 'eu'
@@ -35,7 +34,7 @@ function ManageAccount(props) {
             )}
         socketInitializer()
     },[])    
-    
+    console.log(input, 'input')
     if (props.state.isLogged) {
         return ( 
             <div className="w-full h-screen p-2 bg-gradient-to-tr from-sky-400 to-lime-500 px-4 mt-2">
